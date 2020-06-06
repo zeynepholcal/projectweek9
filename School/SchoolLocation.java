@@ -2,7 +2,7 @@ package School;
 
 import java.util.ArrayList;
 
-public class SchoolLocation {
+public class SchoolLocation { 
 
       /*
     Create 3 private instance variables
