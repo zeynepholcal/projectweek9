@@ -54,7 +54,7 @@ public class SchoolLocation {
             if the location is non of these then throw an exception  --> "This is not a valid location"
 
      */
-    public void setPrice(String price) { 
+    public void setPrice(String price) {
         this.price = price;
 
         if (location.equalsIgnoreCase("USA")){
@@ -72,7 +72,7 @@ public class SchoolLocation {
 
 
     }
-/*
+/* 
     Create a get method for price
      */
 
