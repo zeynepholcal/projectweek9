@@ -9,6 +9,9 @@ public class SchoolLocation {
     String price and location
     Static String ArrayList locationList
      */
+    private String price;
+    private String location;
+    private static ArrayList<String> locationList;
 
 
 
@@ -22,7 +25,16 @@ public class SchoolLocation {
         setSchoolLocation
         setPrice
      */
+    public SchoolLocation(String location) {
 
+        addLocation();
+        setLocationList(location);
+        setPrice(location);
+
+
+
+        this.location = location;
+    }
 
 
     /*
@@ -42,13 +54,31 @@ public class SchoolLocation {
             if the location is non of these then throw an exception  --> "This is not a valid location"
 
      */
+    public void setPrice(String price) {
+        this.price = price;
+
+        if (location.equalsIgnoreCase("USA")){
+            price="$8000";
+        }else if (location.equalsIgnoreCase("England")){
+            price="$6500";
+        }else if (location.equalsIgnoreCase("France")){
+            price="$7200";
+        }else if (location.equalsIgnoreCase("Germany")){
+            price="$7000";
+        }else if (location.equalsIgnoreCase("Canada")){
+            price="$7500";
+        }else
+            throw new RuntimeException  ("This is not a valid location");
 
 
+    }
 /*
     Create a get method for price
      */
 
-
+    public String getPrice() {
+        return price;
+    }
 /*
     Create a public static method name is addLocation
         no return type
@@ -56,14 +86,24 @@ public class SchoolLocation {
              to
         ArrayList locationList
      */
+public static void  addLocation() {
+    locationList.add("USA");
+    locationList.add("England");
+    locationList.add("France");
+    locationList.add("Germany");
+    locationList.add("Canada");
 
+
+}
 
     /*
     Create a get method for the locationList
      */
 
-
-       /*
+    public static ArrayList<String> getLocationList() {
+        return locationList;
+    }
+/*
     Create a set method for the locationList
     no return type
     one parameter String SchoolLocation
@@ -76,10 +116,27 @@ public class SchoolLocation {
      then throw a RunTimeException ("Location should be one of the following " +listOfLocations)
      */
 
+    public void setLocationList( String SchoolLocation) {
+//        ArrayList<String> locationList;
+//        SchoolLocation.locationList = locationList;
 
-    /*
+        locationList.add(SchoolLocation);
+
+        ArrayList<String>listOfLocations = getLocationList();
+
+        if (locationList.contains(SchoolLocation)) {
+            this.location=SchoolLocation;
+        }else
+            throw new RuntimeException  ("Location should be one of the following" + listOfLocations);
+
+
+
+    }
+/*
     Create a get method for the location
      */
 
-
+    public String getLocation() {
+        return location;
+    }
 }
