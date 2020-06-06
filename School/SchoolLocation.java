@@ -11,7 +11,7 @@ public class SchoolLocation {
      */
     private String price;
     private String location;
-    private static ArrayList<String> locationList;
+    private static ArrayList<String> locationList; 
 
 
 
