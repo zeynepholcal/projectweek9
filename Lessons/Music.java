@@ -1,6 +1,25 @@
 package Lessons;
 
-public class Music  {
+import Student.StudentClass;
+
+import java.util.ArrayList;
+
+public class Music extends LessonClass {
+    public Music(StudentClass sc) {
+        super(sc);
+    }
+
+    private ArrayList<String > topicList = new ArrayList<>();
+    @Override
+   public ArrayList<String> topics() {
+        topicList.add("Peacemaking Skills for Little Kids");
+        topicList.add("Learning Through Literature");
+        topicList.add("Creative Conflict Solving");
+        topicList.add("Creating Peace, Building Community");
+        topicList.add("WinWin!");
+        return topicList;
+
+    }
 
     /*
     This class child of the LessonClass

@@ -1,7 +1,16 @@
 package Lessons;
 
 
-public class LessonClass {
+import Data.StudentData;
+import Student.StudentClass;
+
+import javax.naming.directory.Attributes;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Random;
+import java.util.Scanner;
+
+public abstract class LessonClass {
 
    /*
         LessonClass class is abstract class
@@ -14,6 +23,12 @@ public class LessonClass {
 
      */
 
+   private static int totalCreditCount;
+
+   private LinkedHashMap<String, Integer> classNameAndScore = new LinkedHashMap<>();
+
+   private StudentClass sc;
+
     /*
         Create a method name is topics
 
@@ -22,6 +37,9 @@ public class LessonClass {
         Return type is String ArrayList
 
      */
+
+   public abstract ArrayList<String> topics();
+
 
      /*
     Create a constructor for the LessonClass
@@ -32,7 +50,11 @@ public class LessonClass {
     call the setCreditCount method  which you are expected to create below
      */
 
-   /*
+   public LessonClass(StudentClass sc) {
+      this.sc = sc;
+      setCreditCount();
+   }
+/*
 
     Create a method name setCreditCount
     No parameter and no return type
@@ -42,45 +64,84 @@ public class LessonClass {
     After asking also add the credit to totalCreditCount(this comes from the instance variable)
 
 
-    If the user took the class (you wrote in the console with the scanner class) is already exits in the arraylist and the user would like to take it again
+    If the user took the class (you wrote in the console with the scanner class) is already exits in the
+    arraylist and the user would like to take it again
 
     Then print "You already took this class please choose other class"
 
-    If the user didn't take that class before, then add it to the arraylist, and add the credit of the class(which comes from the lessonsName list) to the
+    If the user didn't take that class before, then add it to the arraylist, and add the
+    credit of the class(which comes from the lessonsName list) to the
     totalCreditCount(you need to use checkCredit method)
 
     NOTE: The user can add a class until totalCreditCount equals to 7
 
      */
 
-     /*
-    Create a method name is checkCredit
-    parameter is one String lessonName
-    return type is int
+   public static void setCreditCount() {
+//        LessonClass.totalCreditCount = totalCreditCount;
+      ArrayList<String> lessonsName = new ArrayList<>();
+      Scanner scan = new Scanner(System.in);
 
-    IF the lessonName = Math
-     credit should be 3
+while(totalCreditCount<=7) {
+   System.out.println("Which class you would like to take your options are here : Math , Science , Biology , Chemistry , Music");
+   System.out.println(totalCreditCount);
+   String lesson = scan.nextLine();
+   if (lessonsName.contains(lesson)) {
+      System.out.println("You already took this class please choose other class");
+   } else {
+      lessonsName.add(lesson);
+      int credit = CheckCredit(lesson);
+      totalCreditCount +=  credit ;
+   }
+}
+   }
 
-     IF the lessonName = Science
-     credit should be 4
+   /*
+       Create a method name is checkCredit
+       parameter is one String lessonName
+       return type is int
 
-      IF the lessonName = Biology
-     credit should be 2
+       IF the lessonName = Math
+        credit should be 3
 
-      IF the lessonName = Chemistry
-     credit should be 2
+        IF the lessonName = Science
+        credit should be 4
 
-      IF the lessonName = Music
-     credit should be 3
+         IF the lessonName = Biology
+        credit should be 2
 
-     if the class is non of these options
-        Throw an exception "You class name is not a valid class name."
+         IF the lessonName = Chemistry
+        credit should be 2
 
-    After the if statement
-     put lessonName as a key in the classNameAndScore
-     value should take from the next method which is RandomNum
-     */
+         IF the lessonName = Music
+        credit should be 3
 
+        if the class is non of these options
+           Throw an exception "You class name is not a valid class name."
+
+       After the if statement
+        put lessonName as a key in the classNameAndScore
+        value should take from the next method which is RandomNum
+        */
+   public int CheckCredit(String lessonName) {
+      int credit = 0;
+
+      if (lessonName.equalsIgnoreCase("Math"))
+         credit = 3;
+      else if (lessonName.equalsIgnoreCase("Science"))
+         credit = 4;
+      else if (lessonName.equalsIgnoreCase("Biology"))
+         credit = 2;
+      else if (lessonName.equalsIgnoreCase("Chemistry"))
+         credit = 2;
+      else if (lessonName.equalsIgnoreCase("Music"))
+         credit = 3;
+      else
+         throw new RuntimeException("You class name is not a valid class name.");
+
+      classNameAndScore.put(lessonName,RandomNum());
+return credit;
+   }
 
     /*
     Create a method name is RandomNum
@@ -89,10 +150,19 @@ public class LessonClass {
 
     create an int number between 0 to 100
      */
+    public static int RandomNum(){
+       Random rand = new Random();
+       int random= rand.nextInt(100);
+
+       return random;
+   }
 
 
     /*
     Create a get method for the ClassNameAndScore
      */
 
+   public LinkedHashMap<String, Integer> getClassNameAndScore() {
+      return classNameAndScore;
+   }
 }

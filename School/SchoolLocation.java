@@ -11,7 +11,7 @@ public class SchoolLocation {
    */
     private String price;
     private String location;
-    private static ArrayList<String> locationList;
+    private static ArrayList<String> locationList = new ArrayList<>();
 
 
 
@@ -25,16 +25,14 @@ public class SchoolLocation {
         setSchoolLocation
         setPrice
      */
-    public SchoolLocation(String location) {
+    public SchoolLocation(String location) throws Exception {
 
         addLocation();
         setLocationList(location);
-        setPrice(location);
+        setPrice();
 
-
-
-        this.location = location;
     }
+
 
 
     /*
@@ -54,25 +52,25 @@ public class SchoolLocation {
             if the location is non of these then throw an exception  --> "This is not a valid location"
 
      */
-    public void setPrice(String price) {
-        this.price = price;
+    public void setPrice() throws Exception {
+
 
         if (location.equalsIgnoreCase("USA")){
-            price="$8000";
+            this.price="$8000";
         }else if (location.equalsIgnoreCase("England")){
-            price="$6500";
+            this.price="$6500";
         }else if (location.equalsIgnoreCase("France")){
-            price="$7200";
+            this.price="$7200";
         }else if (location.equalsIgnoreCase("Germany")){
-            price="$7000";
+            this.price="$7000";
         }else if (location.equalsIgnoreCase("Canada")){
-            price="$7500";
+            this.price="$7500";
         }else
-            throw new RuntimeException  ("This is not a valid location");
+            throw new Exception ("This is not a valid location");
 
 
     }
-/* 
+/*
     Create a get method for price
      */
 
@@ -120,11 +118,11 @@ public class SchoolLocation {
 //        ArrayList<String> locationList;
 //        SchoolLocation.locationList = locationList;
 
-        locationList.add(SchoolLocation);
+        //locationList.add(SchoolLocation);
 
         ArrayList<String>listOfLocations = getLocationList();
 
-        if (locationList.contains(SchoolLocation)) {
+        if (listOfLocations.contains(SchoolLocation)) {
             this.location=SchoolLocation;
         }else
             throw new RuntimeException  ("Location should be one of the following" + listOfLocations);

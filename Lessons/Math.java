@@ -1,7 +1,24 @@
 package Lessons;
 
+import Student.StudentClass;
 
-public class Math {
+import java.util.ArrayList;
+
+public class Math extends LessonClass  {
+    public Math(StudentClass sc) {
+        super(sc);
+    }
+    private ArrayList<String > topicList = new ArrayList<>();
+    @Override
+    public ArrayList<String> topics() {
+        topicList.add("Place Value");
+        topicList.add("Compare Whole Numbers");
+        topicList.add("Represent Decimals");
+        topicList.add("Place Value through Thousandths");
+        topicList.add("Multiplication Patterns");
+        return topicList;
+
+    }
    /*
     This class child of the LessonClass
 
